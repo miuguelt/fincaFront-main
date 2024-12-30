@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://fincavillaluz.onrender.com/fields";
+const API_URL = "https://finca.isladigital.xyz/fields";
 
 export const getFields = async () => {
   try {
