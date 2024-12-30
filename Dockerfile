@@ -22,6 +22,8 @@ FROM nginx:stable-alpine
 # Copia los archivos generados en la etapa de construcción al contenedor de Nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Copia la configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expone el puerto 80
 EXPOSE 80
 
