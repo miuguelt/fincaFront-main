@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://finca.isladigital.xyz', // URL de la API
+        target: 'http://finca.isladigital.xyz', // URL de la API
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''), // Elimina el prefijo /api
       },
