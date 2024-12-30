@@ -1,35 +1,35 @@
-# Etapa 1: Construcción
+# Etapa de construcción
 FROM node:18-alpine AS builder
 
-# Establece el directorio de trabajo
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos necesarios para instalar dependencias
+# Copiar los archivos de dependencias
 COPY package.json package-lock.json ./
 
-# Instala las dependencias
-RUN npm ci
+# Instalar dependencias
+RUN npm install
 
-# Copia el código fuente
+# Copiar el resto del código
 COPY . .
 
-# Construye los archivos estáticos con Vite
+# Construir la aplicación
 RUN npm run build
 
-# Etapa 2: Servir archivos estáticos
-FROM alpine:3.18
+# Etapa de producción
+FROM node:18-alpine
 
-# Instala un servidor ligero para archivos estáticos
-RUN apk add --no-cache libc6-compat && npm install -g serve
+# Instalar un servidor ligero para archivos estáticos
+RUN npm install -g serve
 
-# Establece el directorio de trabajo para servir los archivos
-WORKDIR /app
+# Copiar los archivos construidos desde la etapa de construcción
+COPY --from=builder /app/dist /app/dist
 
-# Copia los archivos estáticos generados en la etapa de construcción
-COPY --from=builder /app/dist .
+# Establecer el directorio de trabajo para servir los archivos
+WORKDIR /app/dist
 
-# Expone el puerto 3000 (o el puerto de tu elección)
-EXPOSE 80
+# Exponer el puerto 3000
+EXPOSE 3000
 
-# Comando para servir los archivos
-CMD ["serve", "-s", ".", "-l", "80"]
+# Iniciar el servidor
+CMD ["serve", "-s", ".", "-l", "3000"]
