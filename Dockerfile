@@ -4,28 +4,32 @@ FROM node:18-alpine AS builder
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos necesarios para instalar las dependencias
+# Copia los archivos necesarios para instalar dependencias
 COPY package.json package-lock.json ./
 
 # Instala las dependencias
 RUN npm ci
 
-# Copia el código fuente al contenedor
+# Copia el código fuente
 COPY . .
 
-# Construye el proyecto
+# Construye los archivos estáticos con Vite
 RUN npm run build
 
-# Etapa 2: Servir la aplicación
-FROM nginx:stable-alpine
+# Etapa 2: Servir archivos estáticos
+FROM alpine:3.18
 
-# Copia los archivos generados en la etapa de construcción al contenedor de Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Instala un servidor ligero para archivos estáticos
+RUN apk add --no-cache libc6-compat && npm install -g serve
 
-# Copia la configuración personalizada de Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-# Expone el puerto 80
+# Establece el directorio de trabajo para servir los archivos
+WORKDIR /app
+
+# Copia los archivos estáticos generados en la etapa de construcción
+COPY --from=builder /app/dist .
+
+# Expone el puerto 3000 (o el puerto de tu elección)
 EXPOSE 80
 
-# Comando para iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para servir los archivos
+CMD ["serve", "-s", ".", "-l", "80"]
