@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-// const API_URL = "http://localhost:8080/user";
 const API_URL =  "https://finca.isladigital.xyz/user";
 
 export const getUsers = async () => {
