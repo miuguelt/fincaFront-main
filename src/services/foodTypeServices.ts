@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://finca.isladigital.xyz/foodTypes";
+const API_URL = "http://backend:8081/foodTypes";
 
 export const getFoodTypes = async () => {
   try {
