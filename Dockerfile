@@ -1,20 +1,35 @@
-FROM node:18-alpine AS builder
+# Etapa de construcción
+FROM node:18 AS builder
 
+# Establecer el directorio de trabajo
 WORKDIR /app/fincaFront-main
-COPY package*.json ./
 
-# Asegurarnos de que npm esté instalado (por si acaso)
-RUN apk add --no-cache npm
+# Copiar los archivos de dependencias
+COPY package.json package-lock.json ./
 
+# Instalar dependencias
 RUN npm install
 
+# Copiar el resto del código
 COPY . .
+
+# Construir la aplicación
 RUN npm run build
 
-FROM nginx:alpine
+# Etapa de producción
+FROM node:18-alpine
 
-COPY --from=builder /app/fincaFront-main/dist /usr/share/nginx/html
+# Instalar un servidor ligero para archivos estáticos
+RUN npm install -g serve
 
-EXPOSE 80
+# Copiar los archivos construidos desde la etapa de construcción
+COPY --from=builder /app/fincaFront-main/dist /app/dist
 
-CMD ["nginx", "-g", "daemon off;"]
+# Establecer el directorio de trabajo para servir los archivos
+WORKDIR /app/dist
+
+# Exponer el puerto 3000
+EXPOSE 3000
+
+# Iniciar el servidor
+CMD ["serve", "-s", ".", "-l", "3000"]
