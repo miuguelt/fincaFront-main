@@ -7,6 +7,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"), // Asegúrate de que esta ruta sea correcta
-    },
+    },   
+  },
+  build: {
+    chunkSizeWarningLimit: 1000, // Cambia el límite a 1000 kB
   },
 });
