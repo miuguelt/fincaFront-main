@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://backend:8081/user";
+const API_URL = "https://backend:8081/user";
 
 export const getUsers = async () => {
   try {
