@@ -2,7 +2,7 @@
 FROM node:18 AS builder
 
 # Establecer el directorio de trabajo
-WORKDIR /app/fincaFront-main
+WORKDIR /app/fincaFront
 
 # Copiar los archivos de dependencias
 COPY package.json package-lock.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copiar los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/fincaFront-main/dist /usr/share/nginx/html
+COPY --from=builder /app/fincaFront/dist /usr/share/nginx/html
 
 # Exponer el puerto 80 (Nginx sirve archivos estáticos en HTTP)
 EXPOSE 3001
