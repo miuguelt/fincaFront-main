@@ -17,19 +17,13 @@ COPY . .
 RUN npm run build
 
 # Etapa de producción
-FROM node:18-alpine
-
-# Instalar un servidor ligero para archivos estáticos
-RUN npm install -g serve
+FROM nginx:alpine
 
 # Copiar los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/fincaFront-main/dist /app/dist
+COPY --from=builder /app/fincaFront-main/dist /usr/share/nginx/html
 
-# Establecer el directorio de trabajo para servir los archivos
-WORKDIR /app/dist
-
-# Exponer el puerto 3000
+# Exponer el puerto 80 (Nginx sirve archivos estáticos en HTTP)
 EXPOSE 3000
 
-# Iniciar el servidor
-CMD ["serve", "-s", ".", "-l", "3000"]
+# Iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]
