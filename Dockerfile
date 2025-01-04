@@ -23,7 +23,7 @@ FROM nginx:alpine
 COPY --from=builder /app/fincaFront-main/dist /usr/share/nginx/html
 
 # Exponer el puerto 80 (Nginx sirve archivos estáticos en HTTP)
-EXPOSE 80
+EXPOSE 3001
 
 # Iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]
