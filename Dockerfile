@@ -4,8 +4,9 @@ FROM node:20 AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-
+RUN npm install -g npm@11.0.0
 RUN npm install
+RUN npm audit fix
 
 COPY . .
 
