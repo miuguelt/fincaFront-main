@@ -8,7 +8,6 @@ WORKDIR /app/fincaFront
 COPY package.json package-lock.json ./
 
 # Instalar dependencias
-RUN npm install -g npm@11.0.0
 RUN npm install
 
 # Copiar el resto del código
