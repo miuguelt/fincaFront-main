@@ -16,8 +16,9 @@ COPY . .
 # Construir la aplicación
 RUN npm run build
 
-# Instalar Nginx
-RUN apt-get update && apt-get install -y nginx
+# Etapa de producción
+FROM nginx:alpine
+
 # Copiar los archivos construidos desde la etapa de construcción
 COPY --from=builder /app/fincaFront/dist /usr/share/nginx/html
 
