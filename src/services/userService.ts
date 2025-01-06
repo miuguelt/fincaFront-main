@@ -40,6 +40,8 @@ export const getUser = async (id: string) => {
 
 export const createUser = async (userData: any) => {
   try {
+    console.log("entra a createUser");
+    console.log(API_URL);
     const response = await axios.post(API_URL, userData);
     console.log(API_URL);
     return response.data;
