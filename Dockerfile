@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM node:18 AS builder
+FROM node:lastest AS builder
 
 # Establecer el directorio de trabajo
 WORKDIR /app/fincaFront
@@ -8,9 +8,8 @@ WORKDIR /app/fincaFront
 COPY package.json package-lock.json ./
 
 # Instalar dependencias
-RUN npm install
-
 RUN npm install -g npm@11.0.0
+RUN npm install
 
 # Copiar el resto del código
 COPY . .
