@@ -43,6 +43,9 @@ export const createUser = async (userData: any) => {
     console.log("entra a createUser");
     console.log(API_URL);
     const response = await axios.post(API_URL, userData);
+    console.log(response.data);
+    console.log("sale de createUser");
+    
     console.log(API_URL);
     return response.data;
   } catch (error) {
