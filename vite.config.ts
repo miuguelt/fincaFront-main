@@ -14,7 +14,7 @@ export default defineConfig({
       '/api': {
         target: 'https://finca.isladigital.xyz',
         changeOrigin: true,
-        secure: false
+        secure: true
       },
     },
   },
