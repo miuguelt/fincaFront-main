@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM node:lastest AS builder
+FROM node:20 AS builder
 
 # Establecer el directorio de trabajo
 WORKDIR /app/fincaFront
