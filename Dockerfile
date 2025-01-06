@@ -1,29 +1,25 @@
 # Etapa de construcción
 FROM node:20 AS builder
 
-# Establecer el directorio de trabajo
-WORKDIR /app/fincaFront
+WORKDIR /app
 
-# Copiar los archivos de dependencias
 COPY package.json package-lock.json ./
 
-# Instalar dependencias
 RUN npm install
 
-# Copiar el resto del código
 COPY . .
 
-# Construir la aplicación
 RUN npm run build
 
-# Etapa de producción
-FROM nginx:alpine
+# Etapa 2: Servidor para producción
+FROM nginx:stable-alpine
 
 # Copiar los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/fincaFront/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Exponer el puerto 80 (Nginx usa este puerto por defecto)
+# Eliminar archivos innecesarios
+RUN rm -rf /usr/share/nginx/html/*.map
+
 EXPOSE 80
 
-# Iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]
