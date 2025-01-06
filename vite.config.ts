@@ -14,8 +14,7 @@ export default defineConfig({
       '/api': {
         target: 'https://finca.isladigital.xyz',
         changeOrigin: true,
-        secure: false, // Solo si la API no tiene un certificado SSL válido
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false
       },
     },
   },
