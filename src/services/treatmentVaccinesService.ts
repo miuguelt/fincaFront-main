@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://backend:8081/treatmentVaccines";
+const API_URL = "https://finca.isladigital.xyz/treatmentVaccines";
 
 export const getTreatmentVaccines = async () => {
   try {

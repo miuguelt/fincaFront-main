@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://backend:8081/control";
+const API_URL = "https://finca.isladigital.xyz/control";
 
 export const getControls = async () => {
   try {

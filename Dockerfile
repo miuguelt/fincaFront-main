@@ -16,14 +16,10 @@ COPY . .
 # Construir la aplicación
 RUN npm run build
 
-# Etapa de producción
-FROM nginx:alpine
+RUN npm install -g http-server
 
-# Copiar los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/fincaFront/dist /usr/share/nginx/html
+# Exponer el puerto 8080 (http-server usa este puerto por defecto)
+EXPOSE 8080
 
-# Exponer el puerto 80 (Nginx sirve archivos estáticos en HTTP)
-EXPOSE 80
-
-# Iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Iniciar http-server para servir los archivos estáticos
+CMD ["http-server", "--cors", "-p", "8080"]
