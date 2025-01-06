@@ -10,6 +10,8 @@ COPY package.json package-lock.json ./
 # Instalar dependencias
 RUN npm install
 
+RUN npm install -g npm@11.0.0
+
 # Copiar el resto del código
 COPY . .
 
@@ -22,4 +24,4 @@ RUN npm install -g http-server
 EXPOSE 8080
 
 # Iniciar http-server para servir los archivos estáticos
-CMD ["http-server", "--cors", "-p", "8080"]
+CMD ["http-server", "dist", "-a", "0.0.0.0", "-p", "8080", "--cors"]
