@@ -16,10 +16,13 @@ COPY . .
 # Construir la aplicación
 RUN npm run build
 
-RUN npm install -g http-server
+# Instalar Nginx
+RUN apt-get update && apt-get install -y nginx
+# Copiar los archivos construidos desde la etapa de construcción
+COPY --from=builder /app/fincaFront/dist /usr/share/nginx/html
 
-# Exponer el puerto 8080 (http-server usa este puerto por defecto)
-EXPOSE 8080
+# Exponer el puerto 80 (Nginx usa este puerto por defecto)
+EXPOSE 80
 
-# Iniciar http-server para servir los archivos estáticos
-CMD ["http-server", "dist", "-a", "0.0.0.0", "-p", "8080", "--cors"]
+# Iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]
