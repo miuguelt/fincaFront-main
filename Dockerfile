@@ -12,15 +12,18 @@ COPY . .
 
 RUN npm run build
 
-# Etapa 2: Servidor para producción
-FROM nginx:stable-alpine
+# Etapa 2: Servidor para producción con http-server
+FROM node:20-alpine
 
-# Copiar los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Instalar http-server globalmente
+RUN npm install -g http-server
 
-# Eliminar archivos innecesarios
-RUN rm -rf /usr/share/nginx/html/*.map
+# Copiar archivos estáticos desde la etapa de construcción
+WORKDIR /app
+COPY --from=builder /app/dist /app
 
+# Exponer el puerto 80
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# Configurar http-server con CORS habilitado
+CMD ["http-server", "-p", "80", "--cors"]
