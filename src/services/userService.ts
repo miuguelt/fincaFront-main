@@ -42,7 +42,13 @@ export const createUser = async (userData: any) => {
   try {
     console.log("entra a createUser");
     console.log(API_URL);
-    const response = await axios.post(API_URL, userData);
+    const response = await axios.post(API_URL, userData, {
+      headers: {
+        'Content-Type': 'application/json', // Set content type for JSON data
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+    
     console.log(response.data);
     console.log("sale de createUser");
     
@@ -55,7 +61,12 @@ export const createUser = async (userData: any) => {
 
 export const updateUser = async (id: number, userData: any) => {
     try {
-        const response = await axios.put(`${API_URL}/${id}`, userData);
+        const response = await axios.put(`${API_URL}/${id}`, userData, {
+          headers: {
+            'Content-Type': 'application/json', // Set content type for JSON data
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
         return response.data;
     } catch (error) {
         console.error(error);
