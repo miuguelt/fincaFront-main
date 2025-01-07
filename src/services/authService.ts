@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: "https://finca.isladigital.xyz",
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://finca.isladigital.xyz',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
     'Access-Control-Allow-Headers': 'Content-Type',
   },
@@ -16,6 +16,16 @@ const api = axios.create({
 // Función para iniciar sesión
 export const loginUser = async (credentials: LoginUser) => {
   try {
+    console.log(credentials);
+    console.log("Amtes de login");
+    console.log(api.defaults.headers);
+    console.log(api.defaults.withCredentials);
+    console.log(api.defaults.baseURL);
+    console.log("Fin");
+
+    
+
+
     const response = await api.post('/login', credentials);
     return {
       success: true,
