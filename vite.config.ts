@@ -15,7 +15,7 @@ export default defineConfig({
         target: 'https://finca.isladigital.xyz',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'https://finca.isladigital.xyz',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
           'Access-Control-Allow-Headers': 'Content-Type'
         },
