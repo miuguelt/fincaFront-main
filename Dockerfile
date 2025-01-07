@@ -27,3 +27,4 @@ EXPOSE 80
 
 # Configurar http-server con CORS habilitado
 CMD ["http-server", "-p", "80", "--cors"]
+
