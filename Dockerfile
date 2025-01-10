@@ -25,6 +25,5 @@ COPY --from=builder /app/dist /app
 # Exponer el puerto 80
 EXPOSE 80
 
-# Configurar http-server con CORS habilitado
 CMD ["http-server", "-p", "80", "--cors"]
 
