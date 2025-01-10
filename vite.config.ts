@@ -8,20 +8,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"), // Asegúrate de que esta ruta sea correcta
     },   
-  },
-  server: {
-    proxy: {
-      '/*': {
-        target: 'https://finca.isladigital.xyz',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://finca.isladigital.xyz',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-          'Access-Control-Allow-Headers': 'Content-Type'
-        },
-        changeOrigin: true,
-        secure: true
-      },
-    },
-  },
+  }
 });
