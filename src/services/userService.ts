@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "./api";
 
 const API_URL = "https://finca.isladigital.xyz/user";
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await api.get(API_URL);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export const getUsers = async () => {
 
 export const getUserRoles = async () => {
   try {
-    const response = await axios.get(`${API_URL}/roles`);
+    const response = await api.get(`${API_URL}/roles`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -22,7 +22,7 @@ export const getUserRoles = async () => {
 
 export const getUserStatus = async () => {
   try {
-    const response = await axios.get(`${API_URL}/status`);
+    const response = await api.get(`${API_URL}/status`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -31,7 +31,7 @@ export const getUserStatus = async () => {
 
 export const getUser = async (id: string) => {
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await api.get(`${API_URL}/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -42,7 +42,7 @@ export const createUser = async (userData: any) => {
   try {
     console.log("entra a createUser");
     console.log(API_URL);
-    const response = await axios.post(API_URL, userData, {
+    const response = await api.post(API_URL, userData, {
       headers: {
         'Content-Type': 'application/json', // Set content type for JSON data
         'Access-Control-Allow-Origin': '*'
@@ -61,7 +61,7 @@ export const createUser = async (userData: any) => {
 
 export const updateUser = async (id: number, userData: any) => {
     try {
-        const response = await axios.put(`${API_URL}/${id}`, userData, {
+        const response = await api.put(`${API_URL}/${id}`, userData, {
           headers: {
             'Content-Type': 'application/json', // Set content type for JSON data
             'Access-Control-Allow-Origin': '*'
