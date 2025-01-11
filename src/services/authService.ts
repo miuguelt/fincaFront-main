@@ -2,7 +2,7 @@ import axios from 'axios';
 import { LoginUser} from '../types/userTypes';
 
 export const api = axios.create({
-  baseURL: "http://finca:80",  // URL base del backend
+  baseURL: "https://finca.isladigital.xyz",  // URL base del backend
   headers: {
     'Content-Type': 'application/json',  // Indica el tipo de contenido
   },
