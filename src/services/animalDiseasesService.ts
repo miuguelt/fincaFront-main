@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "/animalDiseases";
+const API_URL = "animalDiseases/";
 
 export const getAnimalDiseases = async () => {
   try {
