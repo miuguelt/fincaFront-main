@@ -15,7 +15,7 @@ export default defineConfig({
         target: 'https://finca.isladigital.xyz',  // URL de tu backend en desarrollo
         changeOrigin: true,               // Cambia el origen de la solicitud al backend
         secure: false,                    // Desactiva la verificación SSL (útil para desarrollo)
-        rewrite: (path) => path.replace(/^\/api/, ''),  // Elimina el prefijo /api
+        rewrite: (path) => path.replace(/^\//, ''),  // Elimina el prefijo /api
       },
     },
   },
