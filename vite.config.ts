@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
+      '/': {
         target: 'https://finca.isladigital.xyz',  // URL de tu backend en desarrollo
         changeOrigin: true,               // Cambia el origen de la solicitud al backend
         secure: false,                    // Desactiva la verificación SSL (útil para desarrollo)
