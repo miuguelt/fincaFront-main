@@ -11,11 +11,12 @@ export default defineConfig({
     },
   },
   server: {
-    cors: {
-      origin: '*', // Permitir cualquier origen
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-      allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-      credentials: true // Permitir credenciales si es necesario
+    proxy: {
+      '/api': {
+        target: 'https://finca.isladigital.xyz',  // URL de tu backend en desarrollo
+        changeOrigin: true,               // Cambia el origen de la solicitud al backend
+        secure: false,                    // Desactiva la verificación SSL (útil para desarrollo)
+        rewrite: (path) => path.replace(/^\/api/, ''),  // Elimina el prefijo /api
+      },
     }
-  }
 });

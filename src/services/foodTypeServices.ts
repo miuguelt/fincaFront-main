@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/foodTypes";
+const API_URL = "/foodTypes";
 
 export const getFoodTypes = async () => {
   try {

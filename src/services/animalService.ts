@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/animals";
+const API_URL = "/animals";
 
 export const getAnimals = async () => {
   try {

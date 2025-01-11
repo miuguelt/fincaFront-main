@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/control";
+const API_URL = "/control";
 
 export const getControls = async () => {
   try {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/vaccines";
+const API_URL = "/vaccines";
 
 export const getVaccines = async () => {
   try {
