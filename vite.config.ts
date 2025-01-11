@@ -8,15 +8,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'), // Alias para importaciones
     },
-  },
-  server: {
-    proxy: {
-      '/api': {  // Prefijo para las solicitudes al backend
-        target: 'https://finca.isladigital.xyz',  // URL del backend
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),  // Elimina el prefijo /api
-      },
-    },
-  },
+  }
 });
