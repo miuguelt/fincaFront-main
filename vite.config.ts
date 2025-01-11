@@ -11,12 +11,11 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://backend:8081', // URL de tu backend en desarrollo
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+    cors: {
+      origin: '*', // Permitir cualquier origen
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+      allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+      credentials: true // Permitir credenciales si es necesario
+    }
+  }
 });
