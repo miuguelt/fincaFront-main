@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "user/";
+const API_URL = "user";
 
 export const getUsers = async () => {
   try {
