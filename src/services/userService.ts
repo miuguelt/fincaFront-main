@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "https://finca.isladigital.xyz/user";
+const API_URL = "/api/user";
 
 export const getUsers = async () => {
   try {

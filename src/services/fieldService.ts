@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "https://finca.isladigital.xyz/fields";
+const API_URL = "/api/fields";
 
 export const getFields = async () => {
   try {
