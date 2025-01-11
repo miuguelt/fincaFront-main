@@ -2,14 +2,11 @@ import axios from 'axios';
 import { LoginUser} from '../types/userTypes';
 
 export const api = axios.create({
-  baseURL: "https://finca.isladigital.xyz",
+  baseURL: "https://finca.isladigital.xyz",  // URL base del backend
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'https://finca.isladigital.xyz',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',  // Indica el tipo de contenido
   },
-  withCredentials: true
+  withCredentials: true,  // Permite el envío de credenciales (cookies, tokens)
 });
 
 
