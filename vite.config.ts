@@ -1,25 +1,22 @@
 
-import path from "path";
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'), // Adjust the path if necessary
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     proxy: {
       '/api': {
-        target: 'http://backend:8081', // Usa el nombre del servicio de Flask en Docker
+        target: 'http://backend:8081', // URL de tu backend en desarrollo
         changeOrigin: true,
         secure: false,
       },
     },
-  },
-  build: {
-    outDir: 'dist', // Carpeta de salida para la construcción
   },
 });
