@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "user";
+const API_URL = "user/";
 
 export const getUsers = async () => {
   try {
@@ -15,7 +15,7 @@ export const getUsers = async () => {
 export const getUserRoles = async () => {
   try {
     console.log("entra a roles ----------------------------------------------------------");
-    const response = await api.get(`${API_URL}/roles/`);
+    const response = await api.get(`${API_URL}roles/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -25,7 +25,7 @@ export const getUserRoles = async () => {
 export const getUserStatus = async () => {
   try {
     console.log("entra a status");
-    const response = await api.get(`${API_URL}/status/`);
+    const response = await api.get(`${API_URL}status/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -35,7 +35,7 @@ export const getUserStatus = async () => {
 export const getUser = async (id: string) => {
   try {
     console.log("entra a getUser------------------------");
-    const response = await api.get(`${API_URL}/${id}`);
+    const response = await api.get(`${API_URL}${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -61,7 +61,7 @@ export const createUser = async (userData: any) => {
 export const updateUser = async (id: number, userData: any) => {
     try {
         console.log("entra a updateUser");
-        const response = await api.put(`${API_URL}/${id}`, userData);
+        const response = await api.put(`${API_URL}${id}`, userData);
         return response.data;
     } catch (error) {
         console.error(error);
