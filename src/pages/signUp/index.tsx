@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const SignUpForm = () => {
-  console.log("antes del singup")
+  console.log("antes del singup-------------------")
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [formData, setFormData] = useState<User>({
     identification: "",

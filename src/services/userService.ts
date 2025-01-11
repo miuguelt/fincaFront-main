@@ -14,7 +14,7 @@ export const getUsers = async () => {
 
 export const getUserRoles = async () => {
   try {
-    console.log("entra a roles");
+    console.log("entra a roles ----------------------------------------------------------");
     const response = await api.get(`${API_URL}/roles`);
     return response.data;
   } catch (error) {
