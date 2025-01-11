@@ -13,7 +13,7 @@ export const getAnimals = async () => {
 
 export const getAnimalStatus = async () => {
   try {
-    const response = await api.get(`${API_URL}/status`);
+    const response = await api.get(`${API_URL}status`);
     return response.data;
   } catch (error) {
     console.error(error);

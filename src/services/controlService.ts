@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "/control";
+const API_URL = "control/";
 
 export const getControls = async () => {
   try {
@@ -22,7 +22,7 @@ export const createControl = async (controlData: any) => {
 
 export const updateControl = async (id: number, controlData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, controlData);
+      const response = await api.put(`${API_URL}${id}`, controlData);
       return response.data;
   } catch (error) {
       console.error(error);

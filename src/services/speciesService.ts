@@ -1,5 +1,5 @@
 import api from "./api";
-const API_URL = "/species";
+const API_URL = "species/";
 
 export const getSpecies = async () => {
   try {
@@ -21,7 +21,7 @@ export const createSpecie = async (specieData: any) => {
 
 export const updateSpecie = async (id: number, specieData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, specieData);
+      const response = await api.put(`${API_URL}${id}`, specieData);
       return response.data;
   } catch (error) {
       console.error(error);

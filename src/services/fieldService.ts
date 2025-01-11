@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "/fields";
+const API_URL = "field/";
 
 export const getFields = async () => {
   try {
@@ -22,7 +22,7 @@ export const createField = async (fieldData: any) => {
 
 export const updateField = async (id: number, fieldData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, fieldData);
+      const response = await api.put(`${API_URL}${id}`, fieldData);
       return response.data;
   } catch (error) {
       console.error(error);

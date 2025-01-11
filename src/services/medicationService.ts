@@ -1,5 +1,5 @@
 import api from "./api";
-const API_URL = "/medications";
+const API_URL = "medications/";
 
 export const getMedications = async () => {
   try {
@@ -21,7 +21,7 @@ export const createMedication = async (medicationData: any) => {
 
 export const updateMedication = async (id: number, medicationData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, medicationData);
+      const response = await api.put(`${API_URL}${id}`, medicationData);
       return response.data;
   } catch (error) {
       console.error(error);

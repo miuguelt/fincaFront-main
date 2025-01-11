@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = "/vaccines";
+const API_URL = "vaccines/";
 
 export const getVaccines = async () => {
   try {
@@ -22,7 +22,7 @@ export const createVaccine = async (vaccineData: any) => {
 
 export const updateVaccine = async (id: number, vaccineData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, vaccineData);
+      const response = await api.put(`${API_URL}${id}`, vaccineData);
       return response.data;
   } catch (error) {
       console.error(error);

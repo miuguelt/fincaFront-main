@@ -1,5 +1,6 @@
 import api from "./api";
-const API_URL = "/foodTypes";
+
+const API_URL = "foodTypes/";
 
 export const getFoodTypes = async () => {
   try {
@@ -21,7 +22,7 @@ export const createFoodType = async (foodTypeData: any) => {
 
 export const updateFoodType = async (id: number, foodTypeData: any) => {
   try {
-      const response = await api.put(`${API_URL}/${id}`, foodTypeData);
+      const response = await api.put(`${API_URL}${id}`, foodTypeData);
       return response.data;
   } catch (error) {
       console.error(error);
