@@ -1,29 +1,32 @@
-# Etapa de construcción
+# Etapa 1: Construcción
 FROM node:20 AS builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm install -g npm@11.0.0
-RUN npm install
-RUN npm audit fix
+# Copiar solo los archivos necesarios para npm install
+COPY package*.json ./
+
+# Actualizar npm y evitar conflictos de caché (evita errores de package-lock.json [[3]][[7]])
+RUN npm install -g npm@latest && \
+    npm install --production=false && \ 
+    npm audit fix --force  # Forzar corrección de vulnerabilidades [[6]]
 
 COPY . .
 
 RUN npm run build
 
-# Etapa 2: Servidor para producción con http-server
+# Etapa 2: Producción
 FROM node:20-alpine
 
-# Instalar http-server globalmente
+# Instalar http-server como dependencia global (evita permisos problemáticos [[5]])
 RUN npm install -g http-server
 
-# Copiar archivos estáticos desde la etapa de construcción
 WORKDIR /app
-COPY --from=builder /app/dist /app
 
-# Exponer el puerto 80
+# Copiar solo los archivos construidos
+COPY --from=builder /app/dist ./dist
+
+# Exponer puerto y correr servidor
 EXPOSE 80
-
-CMD ["http-server", "-p", "80", "--cors"]
+CMD ["http-server", "dist", "-p", "80", "--cors"]
 
