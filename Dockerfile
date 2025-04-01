@@ -1,14 +1,9 @@
-# Etapa 1: Construcción
 FROM node:20 AS builder
 WORKDIR /app
-
-COPY package*.json ./
-
-# Actualizar npm y forzar corrección de vulnerabilidades
-RUN npm install -g npm@latest && \
-    npm install --omit=dev && \  
-    npm install vite@6.2.4 --force && \  
-    npm audit fix --force
-
+COPY package*.json .
+RUN npm install --omit=dev
 COPY . .
 RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
